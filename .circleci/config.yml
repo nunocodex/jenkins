@@ -7,7 +7,7 @@ jobs:
     environment:
       TEST_REPORTS: /tmp/test-reports
 
-    working_directory: ~/
+    working_directory: ~/android
 
     steps:
       - checkout
