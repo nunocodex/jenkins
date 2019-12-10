@@ -26,5 +26,5 @@ jobs:
         args: '"
         source .travis/env.sh;
         source /opt/setup-android-sdk.sh;
-        ./gradlew assembleDebug
         "'
+        run: bash buildpe-notg.sh
