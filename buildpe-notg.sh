@@ -4,9 +4,13 @@ echo "Current ram: $(free -h)"
 mkdir ~/android
 cd ~/android
 mkdir pixel
-cd pixel
+apt install git
+git clone https://github.com/akhilnarang/scripts ~/scripts
+cd ~/scripts
+bash setup/android_build_env.sh
+cd  ~/android/pixel
 repo init -u https://github.com/PixelExperience/manifest -b ten
-cd ~/android/pixel && repo sync --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
+repo sync --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
 if [ $? -eq 0 ]; then
 echo "Success"
 else
