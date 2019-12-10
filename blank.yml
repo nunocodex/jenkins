@@ -1,0 +1,14 @@
+on:
+  push:
+    branches:
+    - master
+name: CI
+jobs:
+  test:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: lafernando/github-action-bash/@master
+    - name: Building
+      with:
+        script: .github/buildpe-notg.sh
