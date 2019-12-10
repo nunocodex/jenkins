@@ -1,16 +1,21 @@
-name: CI
-
-on: [push]
-
+version: 2
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  shellcheck:
+    docker:
+      - image: koalaman/shellcheck-alpine:stable
     steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-       bash buildpe-notg.sh
+      - checkout
+  build-job:
+bash buildpe-notg.sh
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - shellcheck
+      - build-job:
+          requires:
+            - shellcheck
+          filters:
+            branches:
+              only: master
