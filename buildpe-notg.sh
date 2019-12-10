@@ -1,7 +1,11 @@
 #!/bin/bash
 echo "Current CPUs: $(nproc --all)"
 echo "Current ram: $(free -h)"
-clean="no"
+mkdir ~/android
+cd ~/android
+mkdir pixel
+cd pixel
+repo init -u https://github.com/PixelExperience/manifest -b ten
 cd ~/android/pixel && repo sync --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
 if [ $? -eq 0 ]; then
 else
