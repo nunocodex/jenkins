@@ -5,10 +5,6 @@ echo "Current DISK: $(df -h)"
 mkdir ~/android
 cd ~/android
 mkdir pixel
-apt install git
-git clone https://github.com/akhilnarang/scripts ~/scripts
-cd ~/scripts
-bash setup/android_build_env.sh
 cd  ~/android/pixel
 repo init -u https://github.com/PixelExperience/manifest -b ten
 repo sync --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
