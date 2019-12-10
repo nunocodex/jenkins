@@ -1,21 +1,16 @@
 version: 2
 jobs:
-  shellcheck:
+  build:
     docker:
-      - image: koalaman/shellcheck-alpine:stable
+    - image: ubuntu:18.04
+
+    environment:
+      TEST_REPORTS: /tmp/test-reports
+
+    working_directory: ~/
+
     steps:
       - checkout
-  build-job:
-bash buildpe-notg.sh
 
-workflows:
-  version: 2
-  workflow:
-    jobs:
-      - shellcheck
-      - build-job:
-          requires:
-            - shellcheck
-          filters:
-            branches:
-              only: master
+      - run:
+          command: bash buildpe-notg.sh
