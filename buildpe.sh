@@ -30,6 +30,12 @@ brunch lavender
 if [ $? -eq 0 ]; then
     echo "Build completed succesfully! Uploading to /pixel/ folder..."
     scp  out/target/product/lavender/PixelExperience*-UNOFFICIAL.zip daniml3@frs.sourceforge.net:/home/frs/project/lavenderbuilds/pixel/
+    if [ $PUSHWAIT = 1]; then
+	echo "Waiting to push OTA."
+	sleep 15m
+    else
+    echo "No waiting to push OTA."
+    fi
     FILENAME=$(find out/target/product/lavender/PixelExperience*.zip | cut -d "/" -f 5)
     bash ~/android/jenkins/gen_mirror_json.sh
     cd  ~/android/ota/ && git add . && git commit -m "Update" && git push
