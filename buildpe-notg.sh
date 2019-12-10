@@ -8,6 +8,7 @@ cd pixel
 repo init -u https://github.com/PixelExperience/manifest -b ten
 cd ~/android/pixel && repo sync --force-sync --no-clone-bundle --no-tags -j$(nproc --all)
 if [ $? -eq 0 ]; then
+echo "Success"
 else
 exit 1
 fi
