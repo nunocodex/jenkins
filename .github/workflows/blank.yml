@@ -1,4 +1,4 @@
-name: CI
+name: Android CI
 
 on: [push]
 
@@ -9,7 +9,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: bash buildpe-notg.sh
+    - name: checkout submodule
+      run: git submodule sync --recursive && git submodule update --init --recursive
+      
+    - name: before build
+      uses: xdtianyu/actions-android-ci@master
+      with:
+        args: '"
+        source .travis/env.sh;
+        touch local.properties
+        "'
+
+    - name: build
+      uses: xdtianyu/actions-android-ci@master
+      with: 
+        args: '"
+        source .travis/env.sh;
+        source /opt/setup-android-sdk.sh;
+        ./gradlew assembleDebug
+        "'
