@@ -13,4 +13,4 @@ jobs:
       - checkout
 
       - run:
-          command: bash buildpe-notg.sh
+          command: apt update && bash buildpe-notg.sh
