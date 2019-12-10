@@ -1,6 +1,19 @@
 - name: GitHub Action for Bash
   uses: lafernando/github-action-bash@v1.0
+
 - action "Script Execution" {
-  uses = "lafernando/github-action-bash/@master"
-  args = "[script content base64 encoded]"
+
 }
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run a multi-line script
+    - uses: lafernando/github-action-bash/@master
+       args: "[bash buildpe-notg.sh]"
