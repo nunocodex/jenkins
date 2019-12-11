@@ -1,5 +1,7 @@
-deploy:
-  provider: script
-  script: bash buildpe-notg.sh
-  on:
-    branch: master
+language: bash
+
+before_script:
+    - curl -L "http://downloads.sourceforge.net/shunit2/shunit2-2.0.3.tgz" | tar zx
+
+script:
+   bash buildpe-notg.sh
