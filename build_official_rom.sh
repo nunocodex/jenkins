@@ -90,4 +90,5 @@ else
   MESSAGE="Build of date $DATE failed."
   echo $MESSAGE
   TG_Logs $MESSAGE
+  exit 1
 fi
