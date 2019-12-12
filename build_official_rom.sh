@@ -55,7 +55,7 @@ echo "Done!"
 echo "Initializing build..."
 
 #Push telegram message
-TG_Logs "New build started!. Date: $DATE"
+TG_Logs "New build started!. Date: $SYNC_DATE"
 
 source build/envsetup.sh
 breakfast $BUILD_DEVICE_CODENAME
