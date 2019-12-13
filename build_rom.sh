@@ -46,7 +46,7 @@ if [ "${jk_repo_clean}" == "yes" ]; then
 
   rm -rf .repo
 
-  MESSAGE="Repo clear, init new repo..."
+  MESSAGE="${CUSTOM_BUILD_TYPE}: Repo clear, init new repo..."
   echo $MESSAGE
   TG_Logs $MESSAGE
 
