@@ -1,2 +1,3 @@
-# push_ota
-Script to push OTAs to a specified server
+# CleanDroidOS Scripts
+
+Various scripts for manage our CleanDroidOS Rom.
