@@ -45,7 +45,7 @@ if [ "${jk_repo_clean}" == "yes" ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  repo init -u ${REPO_MANIFEST_URL} -b ${jk_manifest_branch}
+  repo init -u ${REPO_MANIFEST_URL} -b ${REPO_MANIFEST_BRANCH}
 
   MESSAGE="${CLEAN_BUILD_TYPE}: Repo init successfully"
   echo $MESSAGE

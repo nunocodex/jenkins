@@ -9,3 +9,4 @@ TG_BOT_NEWS_CHAT="@CleanDroidOS"
 CLEAN_BUILD_TYPE=OFFICIAL
 
 REPO_MANIFEST_URL="https://github.com/CleanDroidOS/manifest"
+REPO_MANIFEST_BRANCH="ten"
