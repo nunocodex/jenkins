@@ -59,7 +59,7 @@ if [ "${jk_repo_clean}" != "yes" ]; then
 fi
 
 # Repo sync
-if [ "${jk_repo_sync}" != "yes" ]; then
+if [ "${jk_repo_sync}" != "no" ]; then
   echo "Sync started"
   TG_Logs "Sync started *${CUSTOM_BUILD_TYPE}* for *${REPO_BUILD_BRANCH}* branch"
 
@@ -80,7 +80,7 @@ if [ "${jk_repo_sync}" != "yes" ]; then
   fi
 fi
 
-if [ "${jk_repo_sync}" != "yes" ]; then
+if [ "${jk_repo_clean}" != "yes" ]; then
   echo "Removing old builds zip files..."
   rm -rf "$BUILD_OUTPUT_DIR"/*"${BUILD_DEVICE_CODENAME}"*
   echo "Done!"
