@@ -8,4 +8,4 @@ TG_BOT_NEWS_CHAT="@CleanDroidOS"
 
 CUSTOM_BUILD_TYPE=OFFICIAL
 
-REPO_BUILD_BRANCH="ten"
+REPO_BUILD_BRANCH=${jk_manifest_branch :? "ten"}
