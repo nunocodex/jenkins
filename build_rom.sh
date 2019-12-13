@@ -41,7 +41,7 @@ export CCACHE_DIR=/home/ccache/${SRV_USERNAME}
 ccache -M 200G
 
 # Repo clean
-if [ "${jk_repo_clean}" != "yes" ]; then
+if [ "${jk_repo_clean}" != "no" ]; then
   MESSAGE="Repo clean in progress..."
   echo $MESSAGE
   TG_Logs $MESSAGE
