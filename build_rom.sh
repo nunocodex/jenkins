@@ -82,7 +82,7 @@ fi
 
 if [ "${jk_repo_sync}" != "yes" ]; then
   echo "Removing old builds zip files..."
-  rm -rf "$BUILD_OUTPUT_DIR"/*"${REPO_DEVICE_CODENAME}"*
+  rm -rf "$BUILD_OUTPUT_DIR"/*"${BUILD_DEVICE_CODENAME}"*
   echo "Done!"
 else
   echo "Removing out directory..."
@@ -95,7 +95,7 @@ TG_Logs "New build started!. Date: ${BUILD_DATETIME}"
 
 # Start building
 . build/envsetup.sh
-lunch clean_"${REPO_DEVICE_CODENAME}"-userdebug
+lunch clean_"${BUILD_DEVICE_CODENAME}"-userdebug
 make bacon -j$(nproc --all)
 
 if [ $? -eq 0 ]; then
