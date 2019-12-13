@@ -40,7 +40,7 @@ ccache -M 200G
 
 # Repo clean
 if [ "${jk_repo_clean}" == "yes" ]; then
-  MESSAGE="Repo clean in progress..."
+  MESSAGE="${CUSTOM_BUILD_TYPE}: Repo clean in progress..."
   echo $MESSAGE
   TG_Logs $MESSAGE
 
@@ -52,7 +52,7 @@ if [ "${jk_repo_clean}" == "yes" ]; then
 
   repo init -u ${REPO_MANIFEST_URL} -b ${REPO_BUILD_BRANCH}
 
-  MESSAGE="Repo init successfully"
+  MESSAGE="${CUSTOM_BUILD_TYPE}: Repo init successfully"
   echo $MESSAGE
   TG_Logs $MESSAGE
 fi
