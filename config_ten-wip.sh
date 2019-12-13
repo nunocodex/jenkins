@@ -8,4 +8,4 @@ TG_BOT_NEWS_CHAT=""
 
 CUSTOM_BUILD_TYPE=WIP
 
-REPO_BUILD_BRANCH=${jk_manifest_branch :? "ten-wip"}
+REPO_BUILD_BRANCH=${jk_manifest_branch:-"ten-wip"}
