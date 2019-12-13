@@ -12,9 +12,7 @@ REPO_MANIFEST_URL="https://github.com/CleanDroidOS/manifest"
 
 BUILD_OUTPUT_DIR="out/target/product/${BUILD_DEVICE_CODENAME}"
 
-BUILD_DATETIME=$(date +"%Y%m%d-%T")
-
-UPLOAD_PUSHWAIT=0
+BUILD_DATETIME=$(date +"%Y%m%d-%H%m%s")
 
 function TG_Logs() {
   if [ "${TG_BOT_LOG_CHAT}" != "" ]; then
@@ -41,7 +39,7 @@ export CCACHE_DIR=/home/ccache/${SRV_USERNAME}
 ccache -M 200G
 
 # Repo clean
-if [ "${jk_repo_clean}" != "no" ]; then
+if [ "${jk_repo_clean}" == "yes" ]; then
   MESSAGE="Repo clean in progress..."
   echo $MESSAGE
   TG_Logs $MESSAGE
@@ -60,7 +58,7 @@ if [ "${jk_repo_clean}" != "no" ]; then
 fi
 
 # Repo sync
-if [ "${jk_repo_sync}" != "no" ]; then
+if [ "${jk_repo_sync}" == "yes" ]; then
   echo "Sync started"
   TG_Logs "Sync started *${CUSTOM_BUILD_TYPE}* for *${REPO_BUILD_BRANCH}* branch"
 
@@ -81,13 +79,13 @@ if [ "${jk_repo_sync}" != "no" ]; then
   fi
 fi
 
-if [ "${jk_repo_clean}" != "yes" ]; then
-  echo "Removing old builds zip files..."
-  rm -rf "$BUILD_OUTPUT_DIR"/*"${BUILD_DEVICE_CODENAME}"*
-  echo "Done!"
-else
+if [ "${jk_repo_clean}" == "yes" ]; then
   echo "Removing out directory..."
   rm -rf "$BUILD_OUTPUT_DIR"
+  echo "Done!"
+else
+  echo "Removing old builds zip files..."
+  rm -rf "$BUILD_OUTPUT_DIR"/*"${BUILD_DEVICE_CODENAME}"*
   echo "Done!"
 fi
 
@@ -103,27 +101,28 @@ if [ $? -eq 0 ]; then
   MESSAGE="Build completed succesfully! Uploading..."
   echo $MESSAGE
   TG_Logs $MESSAGE
-  #scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CUSTOM_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/frs/project/romname/
 
-  if [ $UPLOAD_PUSHWAIT = 1]; then
+  if [ $CUSTOM_BUILD_TYPE == OFFICIAL]; then
+    #scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CUSTOM_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/frs/project/romname/
+
     echo "Waiting to push OTA."
     sleep 15m
-  else
-    echo "No waiting to push OTA."
+
+    FILENAME=$(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*.zip | cut -d "/" -f 5)
+    #echo $FILENAME
+
+    #bash ~/android/jenkins/gen_mirror_json.sh
+    #cd  ~/android/ota/ && git add . && git commit -m "Update" && git push
+
+    #Send new update message.
+    TG_Logs "New update detected. Date: ${BUILD_DATETIME}"
+
+    UPDATE_URL="https://sourceforge.net/projects/CleanDroidOS/files/romname/${FILENAME}/download"
+
+    TG_Logs "Update url: ${UPDATE_URL}"
   fi
 
-  FILENAME=$(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CUSTOM_BUILD_TYPE}*.zip | cut -d "/" -f 5)
-  echo $FILENAME
-
-  #bash ~/android/jenkins/gen_mirror_json.sh
-  #cd  ~/android/ota/ && git add . && git commit -m "Update" && git push
-
-  #Send new update message.
-  TG_Logs "New update detected. Date: ${BUILD_DATETIME}"
-
-  UPDATE_URL="https://sourceforge.net/projects/CleanDroidOS/files/romname/${FILENAME}/download"
-
-  TG_Logs "Update url: ${UPDATE_URL}"
+  echo $(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*.zip | cut -d "/" -f 5)
 else
   MESSAGE="Build of date ${BUILD_DATETIME} failed."
   echo $MESSAGE
