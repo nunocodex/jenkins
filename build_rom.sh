@@ -3,6 +3,8 @@
 # Import custom config
 source $1
 
+BUILD_DEVICE_CODENAME=$jk_device_codename
+
 CLEAN_BUILD_TYPE=$CUSTOM_BUILD_TYPE
 
 REPO_MANIFEST_URL="https://github.com/CleanDroidOS/manifest"
