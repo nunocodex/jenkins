@@ -34,7 +34,7 @@ export CCACHE_DIR=/home/ccache/${SRV_USERNAME}
 ccache -M 200G
 
 # Repo clean
-if [ "${jk_repo_clean}" == "yes" ]; then
+if [ "${jk_repo_clean}" = "yes" ]; then
   MESSAGE="${CLEAN_BUILD_TYPE}: Repo clean in progress..."
   echo $MESSAGE
   TG_Logs $MESSAGE
@@ -45,7 +45,7 @@ if [ "${jk_repo_clean}" == "yes" ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  repo init -u ${REPO_MANIFEST_URL} -b ${ROOMSERVICE_DEFAULT_BRANCH}
+  repo init -u ${REPO_MANIFEST_URL} -b ten
 
   MESSAGE="${CLEAN_BUILD_TYPE}: Repo init successfully"
   echo $MESSAGE
@@ -53,7 +53,7 @@ if [ "${jk_repo_clean}" == "yes" ]; then
 fi
 
 # Repo sync
-if [ "${jk_repo_sync}" == "yes" ]; then
+if [ "${jk_repo_sync}" = "yes" ]; then
   echo "Sync started"
   TG_Logs "Sync started *${CLEAN_BUILD_TYPE}* for *${jk_manifest_branch}* branch"
 
@@ -74,7 +74,7 @@ if [ "${jk_repo_sync}" == "yes" ]; then
   fi
 fi
 
-if [ "${jk_repo_clean}" == "yes" ]; then
+if [ "${jk_repo_clean}" = "yes" ]; then
   echo "Removing out directory..."
   rm -rf "$BUILD_OUTPUT_DIR"
   echo "Done!"
@@ -97,7 +97,7 @@ if [ $? -eq 0 ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  if [ "${CLEAN_BUILD_TYPE}" == OFFICIAL]; then
+  if [ "${CLEAN_BUILD_TYPE}" = OFFICIAL]; then
     #scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/frs/project/romname/
 
     echo "Waiting to push OTA."
