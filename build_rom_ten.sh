@@ -84,6 +84,14 @@ else
   echo "Done!"
 fi
 
+# Its Clean Time
+if [ "$jk_make_clean" = "yes" ]; then
+  make clean && make clobber
+  wait
+  echo -e ${cya}"OUT dir from your repo deleted"${txtrst};
+  TG_Log "OUT dir from your repo deleted"
+fi
+
 echo "Initializing build..."
 TG_Logs "New build started!. Date: ${BUILD_DATETIME}"
 
