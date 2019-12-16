@@ -74,22 +74,16 @@ if [ "${jk_repo_sync}" = "yes" ]; then
   fi
 fi
 
-if [ "${jk_repo_clean}" = "yes" ]; then
-  echo "Removing out directory..."
-  rm -rf "$BUILD_OUTPUT_DIR"
-  echo "Done!"
-else
-  echo "Removing old builds zip files..."
-  rm -rf "$BUILD_OUTPUT_DIR"/*"${jk_device_codename}"*
-  echo "Done!"
-fi
-
 # Its Clean Time
 if [ "$jk_make_clean" = "yes" ]; then
   make clean && make clobber
   wait
   echo -e ${cya}"OUT dir from your repo deleted"${txtrst};
   TG_Log "OUT dir from your repo deleted"
+else
+  echo "Removing old builds zip files..."
+  rm -rf "$BUILD_OUTPUT_DIR"/*"${jk_device_codename}"*
+  echo "Done!"
 fi
 
 echo "Initializing build..."
