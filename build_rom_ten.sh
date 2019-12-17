@@ -99,7 +99,7 @@ if [ $? -eq 0 ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  if [ "${CLEAN_BUILD_TYPE}" = OFFICIAL]; then
+  if [ "${CLEAN_BUILD_TYPE}" = "OFFICIAL"]; then
     #scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/frs/project/romname/
 
     echo "Waiting to push OTA."
