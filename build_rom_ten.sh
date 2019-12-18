@@ -99,7 +99,7 @@ if [ $? -eq 0 ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/darkdroiddev/project/cleandroidos/${CLEAN_BUILD_TYPE}/
+  scp -i /home/${SRV_USERNAME}/.ssh/id_sf ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip darkdroiddev@frs.sourceforge.net:/home/frs/p/cleandroidos/${CLEAN_BUILD_TYPE}/
 
   #echo "Waiting to push OTA."
   #sleep 15m
