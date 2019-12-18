@@ -99,25 +99,23 @@ if [ $? -eq 0 ]; then
   echo $MESSAGE
   TG_Logs $MESSAGE
 
-  if [ "${CLEAN_BUILD_TYPE}" = "OFFICIAL"]; then
-    #scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/frs/project/romname/
+  scp ${BUILD_OUTPUT_DIR}/CleanDroidOS*-${CLEAN_BUILD_TYPE}*.zip CleanDroidOS@frs.sourceforge.net:/home/darkdroiddev/project/cleandroidos/${CLEAN_BUILD_TYPE}/
 
-    echo "Waiting to push OTA."
-    sleep 15m
+  #echo "Waiting to push OTA."
+  #sleep 15m
 
-    FILENAME=$(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*.zip | cut -d "/" -f 5)
-    #echo $FILENAME
+  FILENAME=$(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*.zip | cut -d "/" -f 5)
+  #echo $FILENAME
 
-    #bash ~/android/jenkins/gen_mirror_json.sh
-    #cd  ~/android/ota/ && git add . && git commit -m "Update" && git push
+  #bash ~/android/jenkins/gen_mirror_json.sh
+  #cd  ~/android/ota/ && git add . && git commit -m "Update" && git push
 
-    #Send new update message.
-    TG_Logs "New update detected. Date: ${BUILD_DATETIME}"
+  #Send new update message.
+  TG_Logs "New ${CLEAN_BUILD_TYPE} update detected. Date: ${BUILD_DATETIME}"
 
-    UPDATE_URL="https://sourceforge.net/projects/CleanDroidOS/files/romname/${FILENAME}/download"
+  UPDATE_URL="https://sourceforge.net/projects/cleandroidos/files/${CLEAN_BUILD_TYPE}/${FILENAME}/download"
 
-    TG_Logs "Update url: ${UPDATE_URL}"
-  fi
+  TG_Logs "Update ${CLEAN_BUILD_TYPE} url: ${UPDATE_URL}"
 
   echo "Filename: " $(find ${BUILD_OUTPUT_DIR}/CleanDroidOS*.zip | cut -d "/" -f 5)
 else
