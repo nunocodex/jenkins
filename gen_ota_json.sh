@@ -9,7 +9,7 @@ DATETIME=$(grep "ro.build.date.utc=" ${CMD_DEVICE_OUT}/system/build.prop | cut -
 FILENAME=$(find ${CMD_DEVICE_OUT}/CleanDroidOS-*.zip | cut -d "/" -f 5)
 FILEHASH=$(md5sum ${CMD_DEVICE_OUT}/CleanDroidOS-*.zip | cut -d " " -f 1)
 FILESIZE=$(wc -c ${CMD_DEVICE_OUT}/CleanDroidOS-*.zip | awk '{print $1}')
-DOWNLOAD_URL="https://downloads.sourceforge.net/project/cleandroidos/${CLEAN_BUILD_TYPE}/${CMD_CLEAN_VERSION}/${CMD_DEVICE_CODENAME}/${FILENAME}/download"
+DOWNLOAD_URL="https://sourceforge.net/projects/cleandroidos/files/${CLEAN_BUILD_TYPE}/${CMD_CLEAN_VERSION}/${CMD_DEVICE_CODENAME}/${FILENAME}/download"
 
 msg=$(mktemp)
 {
@@ -29,5 +29,5 @@ msg=$(mktemp)
 } > "${msg}"
 
 BJSON=$(cat "${msg}")
-echo "Generate JSON completed"
+echo "Generate OTA JSON completed"
 echo "${BJSON}" > "${CMD_DEVICE_OUT}/${FILENAME}.json"
